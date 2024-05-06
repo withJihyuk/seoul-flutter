@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kakao_map_plugin/kakao_map_plugin.dart';
 
 class MapPage extends StatelessWidget {
   const MapPage({super.key});
@@ -6,7 +7,7 @@ class MapPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: SafeArea(child: Text("Map")),
+      body: KakaoMap(),
     );
   }
 }
