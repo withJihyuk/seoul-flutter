@@ -39,6 +39,7 @@ dependencies:
   kakao_map_plugin: ^0.3.0
   flutter_svg: ^2.0.10+1
   flutter_native_splash: ^2.4.0
+  geolocator: ^11.0.0
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +65,8 @@ flutter:
 
   assets:
     - assets/images/logo.png
+    - assets/images/circle.png
+    - assets/images/marker.png
 
   fonts:
       - family: Pretendard-100

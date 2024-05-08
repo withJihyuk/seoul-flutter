@@ -1,17 +1,17 @@
 import 'package:go_router/go_router.dart';
-import 'package:seoul_media/views/home/home_page.dart';
+import 'package:seoul_media/views/main/main_page.dart';
 import 'package:seoul_media/views/map/map_page.dart';
 
 class PageRouter {
-  static const _homePage = "/";
+  static const _mainPage = "/";
   static const _mapPage = "map";
 
   static final GoRouter router = GoRouter(
     initialLocation: "/",
     routes: [
       GoRoute(
-        path: _homePage,
-        builder: (context, state) => const HomePage(),
+        path: _mainPage,
+        builder: (context, state) => const MainPage(),
         routes: [
           GoRoute(
             path: _mapPage,

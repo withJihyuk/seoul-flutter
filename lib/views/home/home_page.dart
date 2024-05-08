@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:seoul_media/utils/fonts.dart';
 import 'package:seoul_media/widgets/month_event_button.dart';
 import 'package:seoul_media/widgets/schedule_button.dart';
@@ -10,6 +9,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FlutterNativeSplash.remove();
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
                           height: 20,
                         ),
                         const Text(
-                          "좋은 오후에요 이런 행사는 어떠세요?",
+                          "좋은 오후에요\n이런 행사는 어떠세요?",
                           style: TextStyle(
                             fontFamily: pretendard_800,
                             fontSize: 25,
@@ -140,10 +140,6 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                TextButton(
-                  onPressed: () => context.go('/map'),
-                  child: const Text("Map으로 가기"),
-                )
               ],
             ),
           ),
