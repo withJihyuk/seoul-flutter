@@ -7,7 +7,7 @@ class MapPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: KakaoMap(),
+      body: SafeArea(child: KakaoMap()),
     );
   }
 }
