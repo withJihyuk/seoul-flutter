@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:flutter/widgets.dart';
+import 'package:go_router/go_router.dart';
 import 'package:seoul_media/utils/fonts.dart';
 import 'package:seoul_media/widgets/month_event_button.dart';
 import 'package:seoul_media/widgets/schedule_button.dart';
@@ -9,7 +10,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FlutterNativeSplash.remove();
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -105,34 +105,39 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   height: 280,
-                  child: const Column(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      ScheduleButton(),
-                      ScheduleButton(),
-                      ScheduleButton(),
-                      Divider(
+                      const ScheduleButton(),
+                      const ScheduleButton(),
+                      const ScheduleButton(),
+                      const Divider(
                         thickness: 1,
                         height: 15,
                         color: Color(0xffd9d9d9),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "전체 보러가기",
-                            style: TextStyle(
-                              fontFamily: pretendard_500,
-                              fontSize: 15,
-                              color: Color(0xff999999),
-                            ),
+                      GestureDetector(
+                        onTap: () => context.go('/all'),
+                        child: Container(
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "전체 보러가기",
+                                style: TextStyle(
+                                  fontFamily: pretendard_500,
+                                  fontSize: 15,
+                                  color: Color(0xff999999),
+                                ),
+                              ),
+                              Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                size: 16,
+                                color: Color(0xff999999),
+                              )
+                            ],
                           ),
-                          Icon(
-                            Icons.arrow_forward_ios_rounded,
-                            size: 16,
-                            color: Color(0xff999999),
-                          )
-                        ],
+                        ),
                       )
                     ],
                   ),
