@@ -11,13 +11,12 @@ class MapPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: SafeArea(
-        child: Column(
+        child: Stack(
+          alignment: Alignment.bottomCenter,
           children: [
-            Expanded(
-              child: KakaoMap(
-                mapTypeControl: true,
-                zoomControl: true,
-              ),
+            KakaoMap(
+              mapTypeControl: true,
+              zoomControl: true,
             ),
             ParkingAreaButton(),
           ],
