@@ -67,7 +67,6 @@ flutter:
     - assets/images/circle.png
     - assets/images/marker.png
     - assets/images/add.png
-    - assets/config/.env
 
   fonts:
     - family: Pretendard-100

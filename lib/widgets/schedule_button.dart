@@ -10,6 +10,7 @@ class ScheduleButton extends StatelessWidget {
     return GestureDetector(
       onTap: () => context.go('/detail'),
       child: Container(
+        decoration: const BoxDecoration(),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

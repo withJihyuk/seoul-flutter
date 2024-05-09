@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:kakao_map_plugin/kakao_map_plugin.dart';
 import 'package:seoul_media/router.dart';
+import 'package:seoul_media/utils/api.dart';
 
-void main() {
+void main() async {
+  var object = await fetchEventData();
+  print(object);
   AuthRepository.initialize(appKey: '387c69a14b8f3f06773b6de90621547c');
   runApp(const MyApp());
 }

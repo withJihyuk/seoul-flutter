@@ -19,8 +19,3 @@ fetchEventData() async {
     return error;
   }
 }
-
-void main() async {
-  var object = await fetchEventData();
-  print(object);
-}
