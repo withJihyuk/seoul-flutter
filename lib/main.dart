@@ -5,8 +5,7 @@ import 'package:seoul_media/router.dart';
 
 void main() {
   AuthRepository.initialize(appKey: '387c69a14b8f3f06773b6de90621547c');
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
   runApp(const MyApp());
 }
 

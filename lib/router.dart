@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:seoul_media/views/event_detail/event_detail_page.dart';
 import 'package:seoul_media/views/main/main_page.dart';
 import 'package:seoul_media/views/map/map_page.dart';
 

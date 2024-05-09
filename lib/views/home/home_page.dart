@@ -91,27 +91,50 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 16),
-                Padding(
+                Container(
                   padding: const EdgeInsets.symmetric(horizontal: 27),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(20),
-                      ),
-                      border: Border.all(
-                        color: const Color(0xffd9d9d9),
-                        width: 1.0,
-                      ),
+                  margin:
+                      const EdgeInsets.symmetric(vertical: 6, horizontal: 28),
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(20),
                     ),
-                    height: 236,
-                    child: const Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        ScheduleButton(),
-                        ScheduleButton(),
-                        ScheduleButton(),
-                      ],
+                    border: Border.all(
+                      color: const Color(0xffd9d9d9),
+                      width: 1.0,
                     ),
+                  ),
+                  height: 280,
+                  child: const Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ScheduleButton(),
+                      ScheduleButton(),
+                      ScheduleButton(),
+                      Divider(
+                        thickness: 1,
+                        height: 15,
+                        color: Color(0xffd9d9d9),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "전체 보러가기",
+                            style: TextStyle(
+                              fontFamily: pretendard_500,
+                              fontSize: 15,
+                              color: Color(0xff999999),
+                            ),
+                          ),
+                          Icon(
+                            Icons.arrow_forward_ios_rounded,
+                            size: 16,
+                            color: Color(0xff999999),
+                          )
+                        ],
+                      )
+                    ],
                   ),
                 ),
                 const SizedBox(

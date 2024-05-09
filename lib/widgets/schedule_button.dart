@@ -7,7 +7,6 @@ class ScheduleButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 28),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

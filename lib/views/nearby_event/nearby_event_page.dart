@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:seoul_media/models/location.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:seoul_media/utils/fonts.dart';
 import 'package:seoul_media/widgets/nearby_event_marker.dart';
 
@@ -17,19 +17,24 @@ class NearbyEventPage extends StatefulWidget {
 }
 
 class _NearbyEventPageState extends State<NearbyEventPage> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getLocationData();
+  void gpsSetting() async {
+    var gps = await getCurrentLocation();
+    latitude = gps.latitude;
+    longitude = gps.longitude;
+
+    print(latitude);
+    print(longitude);
   }
 
-  void getLocationData() async {
-    Location location = Location();
-    await location.getCurrentLocation();
-    print(location.latitude);
-    print(location.longitude);
+  Future<Position> getCurrentLocation() async {
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+
+    return position;
   }
+
+  late double latitude;
+  late double longitude;
 
   double getRandomValueLeftLabels(double minLeftLabel, double maxLeftLabel,
       double minLeft, double maxLeft, List<double> existingLeftLabels) {
@@ -60,8 +65,7 @@ class _NearbyEventPageState extends State<NearbyEventPage> {
 
   @override
   Widget build(BuildContext context) {
-    getLocationData();
-
+    gpsSetting();
     List<double> leftLabels = [];
     List<double> topLabels = [];
 
