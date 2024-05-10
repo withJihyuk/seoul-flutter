@@ -5,7 +5,7 @@ import 'package:seoul_media/utils/data.dart';
 fetchEventData() async {
   const endpoint = String.fromEnvironment('API_ENDPOINT');
 
-  var response = await http.get(Uri.parse('http://$endpoint/culture'));
+  var response = await http.get(Uri.parse('https://$endpoint/culture'));
 
   if (response.statusCode == 200) {
     final decodeData = utf8.decode(response.bodyBytes);
