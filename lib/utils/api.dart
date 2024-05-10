@@ -13,6 +13,8 @@ fetchEventData() async {
 
     if (jsonData.containsKey('culturalEventInfo')) {
       var data = jsonData['culturalEventInfo']['row'];
+      print(data);
+
       if (data is List && data.isNotEmpty) {
         return data
             .map<Event>((eventJson) => Event.fromJson(eventJson))

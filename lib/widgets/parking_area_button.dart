@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:seoul_media/utils/fonts.dart';
 
-class ParkingAreaButton extends StatelessWidget {
+class ParkingAreaButton extends StatefulWidget {
   const ParkingAreaButton({super.key});
 
+  @override
+  State<ParkingAreaButton> createState() => _ParkingAreaButtonState();
+}
+
+class _ParkingAreaButtonState extends State<ParkingAreaButton> {
   @override
   Widget build(BuildContext context) {
     return Container(

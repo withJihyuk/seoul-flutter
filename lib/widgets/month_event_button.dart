@@ -33,7 +33,7 @@ class _MonthEventButtonState extends State<MonthEventButton> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.go('/detail'),
+      onTap: () => context.push('/detail/:${widget.index}'),
       child: Container(
         margin: const EdgeInsets.only(right: 27),
         decoration: BoxDecoration(

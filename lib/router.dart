@@ -8,7 +8,7 @@ class PageRouter {
   static const _homePage = "/";
   static const _mapPage = "map";
   static const _allEventPage = "all";
-  static const _eventDetailPage = "detail";
+  static const _eventDetailPage = "detail/:id";
 
   static final GoRouter router = GoRouter(
     initialLocation: "/",
@@ -27,7 +27,9 @@ class PageRouter {
           ),
           GoRoute(
             path: _eventDetailPage,
-            builder: (context, state) => const EventDetailPage(),
+            builder: (context, state) {
+              return EventDetailPage(state.pathParameters["id"]);
+            },
           )
         ],
       )

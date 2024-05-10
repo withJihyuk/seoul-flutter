@@ -1,93 +1,159 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
+import 'package:go_router/go_router.dart';
+import 'package:seoul_media/utils/api.dart';
+import 'package:seoul_media/utils/data.dart';
 import 'package:seoul_media/utils/fonts.dart';
 
-class AllEventButton extends StatelessWidget {
-  const AllEventButton({super.key});
+class AllEventButton extends StatefulWidget {
+  const AllEventButton({super.key, required this.index});
+  final int index;
+
+  @override
+  State<AllEventButton> createState() => _AllEventButtonState();
+}
+
+class _AllEventButtonState extends State<AllEventButton> {
+  List<Event> eventData = [];
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
+  Future<void> fetchData() async {
+    var object = await fetchEventData();
+    setState(() {
+      eventData = object;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(left: 28, right: 28, top: 20),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: const Color(0xffd9d9d9),
-          width: 0.8,
-        ),
-        borderRadius: const BorderRadius.all(
-          Radius.circular(16),
-        ),
-      ),
-      height: 280,
-      child: Column(
-        children: [
-          Container(
-            margin: const EdgeInsets.all(14),
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(
-                Radius.circular(16),
-              ),
-              color: Colors.grey,
-            ),
-            height: 170,
+    return GestureDetector(
+      onTap: () => context.push('/detail'),
+      child: Container(
+        margin: const EdgeInsets.only(right: 27),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: const Color(0xffd9d9d9),
+            width: 0.8,
           ),
-          Container(
-            height: 60,
-            margin: const EdgeInsets.symmetric(horizontal: 17),
-            child: const Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  "서울시국악관현악단 제362회 정기연주회",
-                  style: TextStyle(
-                    fontFamily: pretendard_700,
-                    fontSize: 14.4,
+          borderRadius: const BorderRadius.all(
+            Radius.circular(16),
+          ),
+        ),
+        width: 280,
+        child: Column(
+          children: [
+            eventData.isEmpty
+                ? Container(
+                    margin: const EdgeInsets.all(14),
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(16),
+                      ),
+                      color: Colors.grey,
+                    ),
+                    width: 240,
+                    height: 134,
+                  )
+                : Container(
+                    margin: const EdgeInsets.all(14),
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(16),
+                      ),
+                    ),
+                    child: Image.network(
+                      eventData[widget.index].mainImg,
+                      height: 133,
+                      width: 240,
+                      scale: 2,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.location_on_sharp,
-                        size: 17,
-                      ),
-                      SizedBox(
-                        width: 4,
-                      ),
-                      Text(
-                        "세종대극장",
-                        style: TextStyle(
-                          fontFamily: pretendard_500,
-                          fontSize: 10.4,
+            Expanded(
+              child: Container(
+                alignment: Alignment.bottomLeft,
+                margin: const EdgeInsets.symmetric(horizontal: 17),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 5),
+                      child: Text(
+                        eventData.isEmpty ? "" : eventData[widget.index].title,
+                        style: const TextStyle(
+                          fontFamily: pretendard_700,
+                          fontSize: 14.4,
                         ),
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.calendar_today_outlined,
-                        size: 17,
                       ),
-                      SizedBox(
-                        width: 4,
+                    ),
+                    Container(
+                      alignment: Alignment.bottomLeft,
+                      decoration: const BoxDecoration(),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            child: Row(
+                              children: [
+                                eventData.isEmpty
+                                    ? const SizedBox()
+                                    : const Icon(
+                                        Icons.location_on_sharp,
+                                        size: 17,
+                                      ),
+                                const SizedBox(
+                                  width: 4,
+                                ),
+                                Text(
+                                  eventData.isEmpty
+                                      ? ""
+                                      : eventData[widget.index].place,
+                                  style: const TextStyle(
+                                    fontFamily: pretendard_500,
+                                    fontSize: 10.4,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          Container(
+                            alignment: Alignment.bottomLeft,
+                            child: Row(
+                              children: [
+                                eventData.isEmpty
+                                    ? const SizedBox()
+                                    : const Icon(
+                                        Icons.calendar_today_outlined,
+                                        size: 17,
+                                      ),
+                                const SizedBox(
+                                  width: 4,
+                                ),
+                                Text(
+                                  eventData.isEmpty
+                                      ? ""
+                                      : eventData[widget.index].date,
+                                  style: const TextStyle(
+                                    fontFamily: pretendard_500,
+                                    fontSize: 10.4,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
-                      Text(
-                        "2024-11-29~2024-11-29",
-                        style: TextStyle(
-                          fontFamily: pretendard_500,
-                          fontSize: 10.4,
-                        ),
-                      )
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }
