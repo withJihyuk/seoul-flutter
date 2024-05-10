@@ -11,10 +11,14 @@ fetchEventData() async {
     final decodeData = utf8.decode(response.bodyBytes);
     final jsonData = json.decode(decodeData);
 
-    // 이벤트별로 나열되어 데이터가 리턴됨
-    var data = jsonData['culturalEventInfo']['row'];
-    var list = Event.fromJson(data[0]);
-    return list;
+    if (jsonData.containsKey('culturalEventInfo')) {
+      var data = jsonData['culturalEventInfo']['row'];
+      if (data is List && data.isNotEmpty) {
+        return data
+            .map<Event>((eventJson) => Event.fromJson(eventJson))
+            .toList();
+      }
+    }
   } else {
     // 리턴 값 변경 가능
     Map<String, Object> error = {'요청에 실패 했습니다': 500};

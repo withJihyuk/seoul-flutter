@@ -12,13 +12,19 @@ class MonthEventButton extends StatefulWidget {
 }
 
 class _MonthEventButtonState extends State<MonthEventButton> {
-  var object = fetchEventData();
   List<Event> eventData = [];
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    eventData = object;
+    fetchData();
+  }
+
+  Future<void> fetchData() async {
+    var object = await fetchEventData();
+    setState(() {
+      eventData = object;
+    });
   }
 
   @override
@@ -40,16 +46,11 @@ class _MonthEventButtonState extends State<MonthEventButton> {
         height: 240,
         child: Column(
           children: [
-            Container(
-              margin: const EdgeInsets.all(14),
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(16),
-                ),
-                color: Colors.grey,
-              ),
+            Image.network(
+              eventData[0].mainImg,
+              height: 133,
               width: 240,
-              height: 134,
+              scale: 2,
             ),
             Container(
               height: 60,
@@ -64,19 +65,19 @@ class _MonthEventButtonState extends State<MonthEventButton> {
                       fontSize: 14.4,
                     ),
                   ),
-                  const SizedBox(
+                  SizedBox(
                     child: Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.location_on_sharp,
                           size: 17,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 4,
                         ),
                         Text(
-                          "세종대극장",
-                          style: TextStyle(
+                          eventData[0].place,
+                          style: const TextStyle(
                             fontFamily: pretendard_500,
                             fontSize: 10.4,
                           ),
@@ -84,19 +85,19 @@ class _MonthEventButtonState extends State<MonthEventButton> {
                       ],
                     ),
                   ),
-                  const SizedBox(
+                  SizedBox(
                     child: Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.calendar_today_outlined,
                           size: 17,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 4,
                         ),
                         Text(
-                          "2024-11-29~2024-11-29",
-                          style: TextStyle(
+                          eventData[0].date,
+                          style: const TextStyle(
                             fontFamily: pretendard_500,
                             fontSize: 10.4,
                           ),
