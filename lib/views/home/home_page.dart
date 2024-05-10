@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:seoul_media/utils/fonts.dart';
 import 'package:seoul_media/widgets/month_event_button.dart';
@@ -154,15 +155,15 @@ class HomePage extends StatelessWidget {
                 const SizedBox(
                   height: 16,
                 ),
-                const SingleChildScrollView(
+                SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Padding(
-                    padding: EdgeInsets.only(left: 27),
+                    padding: const EdgeInsets.only(left: 27),
                     child: Row(
                       children: [
-                        MonthEventButton(),
-                        MonthEventButton(),
-                        MonthEventButton(),
+                        MonthEventButton(key: UniqueKey(), index: 1),
+                        MonthEventButton(key: UniqueKey(), index: 2),
+                        MonthEventButton(key: UniqueKey(), index: 3),
                       ],
                     ),
                   ),
