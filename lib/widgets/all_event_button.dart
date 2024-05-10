@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
+import 'package:image_network/image_network.dart';
 import 'package:seoul_media/utils/api.dart';
 import 'package:seoul_media/utils/data.dart';
 import 'package:seoul_media/utils/fonts.dart';
@@ -67,11 +68,10 @@ class _AllEventButtonState extends State<AllEventButton> {
                         Radius.circular(16),
                       ),
                     ),
-                    child: Image.network(
-                      eventData[widget.index].mainImg,
+                    child: ImageNetwork(
+                      image: eventData[widget.index].mainImg,
                       height: 133,
                       width: 240,
-                      scale: 2,
                     ),
                   ),
             Expanded(
