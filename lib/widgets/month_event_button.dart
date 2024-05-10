@@ -1,9 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:seoul_media/utils/api.dart';
+import 'package:seoul_media/utils/data.dart';
 import 'package:seoul_media/utils/fonts.dart';
 
-class MonthEventButton extends StatelessWidget {
+class MonthEventButton extends StatefulWidget {
   const MonthEventButton({super.key});
+
+  @override
+  State<MonthEventButton> createState() => _MonthEventButtonState();
+}
+
+class _MonthEventButtonState extends State<MonthEventButton> {
+  var object = fetchEventData();
+  List<Event> eventData = [];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    eventData = object;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,17 +54,17 @@ class MonthEventButton extends StatelessWidget {
             Container(
               height: 60,
               margin: const EdgeInsets.symmetric(horizontal: 17),
-              child: const Column(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    "서울시국악관현악단 제362회 정기연주회",
-                    style: TextStyle(
+                    eventData[0].title,
+                    style: const TextStyle(
                       fontFamily: pretendard_700,
                       fontSize: 14.4,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     child: Row(
                       children: [
                         Icon(
@@ -68,7 +84,7 @@ class MonthEventButton extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     child: Row(
                       children: [
                         Icon(
