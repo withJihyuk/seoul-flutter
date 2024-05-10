@@ -1,11 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:seoul_media/utils/api.dart';
 import 'package:seoul_media/utils/data.dart';
 import 'package:seoul_media/utils/fonts.dart';
 
 class MonthEventButton extends StatefulWidget {
-  const MonthEventButton({super.key});
+  const MonthEventButton({super.key, required this.index});
+  final int index;
 
   @override
   State<MonthEventButton> createState() => _MonthEventButtonState();
@@ -13,7 +17,6 @@ class MonthEventButton extends StatefulWidget {
 
 class _MonthEventButtonState extends State<MonthEventButton> {
   List<Event> eventData = [];
-
   @override
   void initState() {
     super.initState();
@@ -43,71 +46,112 @@ class _MonthEventButtonState extends State<MonthEventButton> {
           ),
         ),
         width: 280,
-        height: 240,
         child: Column(
           children: [
-            Image.network(
-              eventData[0].mainImg,
-              height: 133,
-              width: 240,
-              scale: 2,
-            ),
-            Container(
-              height: 60,
-              margin: const EdgeInsets.symmetric(horizontal: 17),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text(
-                    eventData[0].title,
-                    style: const TextStyle(
-                      fontFamily: pretendard_700,
-                      fontSize: 14.4,
+            eventData.isEmpty
+                ? Container(
+                    margin: const EdgeInsets.all(14),
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(16),
+                      ),
+                      color: Colors.grey,
+                    ),
+                    width: 240,
+                    height: 134,
+                  )
+                : Container(
+                    margin: const EdgeInsets.all(14),
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(16),
+                      ),
+                    ),
+                    child: Image.network(
+                      eventData[widget.index].mainImg,
+                      height: 133,
+                      width: 240,
+                      scale: 2,
                     ),
                   ),
-                  SizedBox(
-                    child: Row(
-                      children: [
-                        const Icon(
-                          Icons.location_on_sharp,
-                          size: 17,
+            Expanded(
+              child: Container(
+                alignment: Alignment.bottomLeft,
+                margin: const EdgeInsets.symmetric(horizontal: 17),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 5),
+                      child: Text(
+                        eventData.isEmpty ? "" : eventData[widget.index].title,
+                        style: const TextStyle(
+                          fontFamily: pretendard_700,
+                          fontSize: 14.4,
                         ),
-                        const SizedBox(
-                          width: 4,
-                        ),
-                        Text(
-                          eventData[0].place,
-                          style: const TextStyle(
-                            fontFamily: pretendard_500,
-                            fontSize: 10.4,
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.bottomLeft,
+                      decoration: const BoxDecoration(),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            child: Row(
+                              children: [
+                                eventData.isEmpty
+                                    ? const SizedBox()
+                                    : const Icon(
+                                        Icons.location_on_sharp,
+                                        size: 17,
+                                      ),
+                                const SizedBox(
+                                  width: 4,
+                                ),
+                                Text(
+                                  eventData.isEmpty
+                                      ? ""
+                                      : eventData[widget.index].place,
+                                  style: const TextStyle(
+                                    fontFamily: pretendard_500,
+                                    fontSize: 10.4,
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
-                        )
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    child: Row(
-                      children: [
-                        const Icon(
-                          Icons.calendar_today_outlined,
-                          size: 17,
-                        ),
-                        const SizedBox(
-                          width: 4,
-                        ),
-                        Text(
-                          eventData[0].date,
-                          style: const TextStyle(
-                            fontFamily: pretendard_500,
-                            fontSize: 10.4,
+                          Container(
+                            alignment: Alignment.bottomLeft,
+                            child: Row(
+                              children: [
+                                eventData.isEmpty
+                                    ? const SizedBox()
+                                    : const Icon(
+                                        Icons.calendar_today_outlined,
+                                        size: 17,
+                                      ),
+                                const SizedBox(
+                                  width: 4,
+                                ),
+                                Text(
+                                  eventData.isEmpty
+                                      ? ""
+                                      : eventData[widget.index].date,
+                                  style: const TextStyle(
+                                    fontFamily: pretendard_500,
+                                    fontSize: 10.4,
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
-                        )
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            )
+            ),
           ],
         ),
       ),

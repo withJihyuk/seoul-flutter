@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:seoul_media/utils/fonts.dart';
 import 'package:seoul_media/widgets/month_event_button.dart';
@@ -154,17 +156,15 @@ class HomePage extends StatelessWidget {
                 const SizedBox(
                   height: 16,
                 ),
-                const SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 27),
-                    child: Row(
-                      children: [
-                        MonthEventButton(),
-                        MonthEventButton(),
-                        MonthEventButton(),
-                      ],
-                    ),
+                SizedBox(
+                  height: 300,
+                  child: ListView.builder(
+                    padding: const EdgeInsets.only(left: 27),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 10,
+                    itemBuilder: (context, index) {
+                      return MonthEventButton(index: index);
+                    },
                   ),
                 ),
               ],
