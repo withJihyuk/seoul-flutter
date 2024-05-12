@@ -109,9 +109,9 @@ class HomePage extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      const ScheduleButton(),
-                      const ScheduleButton(),
-                      const ScheduleButton(),
+                      const ScheduleButton(index: 1),
+                      const ScheduleButton(index: 2),
+                      const ScheduleButton(index: 3),
                       const Divider(
                         thickness: 1,
                         height: 15,

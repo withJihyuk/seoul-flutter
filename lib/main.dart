@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kakao_map_plugin/kakao_map_plugin.dart';
 import 'package:seoul_media/router.dart';
-import 'package:seoul_media/utils/api.dart';
+import 'package:seoul_media/apis/api.dart';
 
 void main() async {
   var object = await fetchEventData();
@@ -10,9 +10,14 @@ void main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(

@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
-import 'package:go_router/go_router.dart';
-import 'package:seoul_media/utils/api.dart';
+import 'package:image_network/image_network.dart';
+import 'package:seoul_media/apis/api.dart';
 import 'package:seoul_media/utils/data.dart';
 import 'package:seoul_media/utils/fonts.dart';
+import 'package:seoul_media/views/event_detail/event_detail_page.dart';
 
 class MonthEventButton extends StatefulWidget {
   const MonthEventButton({super.key, required this.index});
@@ -17,6 +15,7 @@ class MonthEventButton extends StatefulWidget {
 
 class _MonthEventButtonState extends State<MonthEventButton> {
   List<Event> eventData = [];
+
   @override
   void initState() {
     super.initState();
@@ -33,7 +32,12 @@ class _MonthEventButtonState extends State<MonthEventButton> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.push('/detail/:${widget.index}'),
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => EventDetailPage(index: widget.index),
+        ),
+      ),
       child: Container(
         margin: const EdgeInsets.only(right: 27),
         decoration: BoxDecoration(
@@ -67,11 +71,10 @@ class _MonthEventButtonState extends State<MonthEventButton> {
                         Radius.circular(16),
                       ),
                     ),
-                    child: Image.network(
-                      eventData[widget.index].mainImg,
+                    child: ImageNetwork(
+                      image: eventData[widget.index].mainImg,
                       height: 133,
                       width: 240,
-                      scale: 2,
                     ),
                   ),
             Expanded(

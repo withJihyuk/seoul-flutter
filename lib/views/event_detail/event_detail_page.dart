@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:seoul_media/utils/api.dart';
+import 'package:image_network/image_network.dart';
+import 'package:seoul_media/apis/api.dart';
 import 'package:seoul_media/utils/data.dart';
 import 'package:seoul_media/utils/fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+// ignore: must_be_immutable
 class EventDetailPage extends StatefulWidget {
-  EventDetailPage(String? pathParameter, {super.key}) {
-    index = int.parse(pathParameter![1]);
-  }
+  EventDetailPage({super.key, required this.index});
   late int index;
   @override
   State<EventDetailPage> createState() => _EventDetailPageState();
@@ -16,6 +16,7 @@ class EventDetailPage extends StatefulWidget {
 
 class _EventDetailPageState extends State<EventDetailPage> {
   List<Event> eventData = [];
+
   @override
   void initState() {
     super.initState();
@@ -46,7 +47,11 @@ class _EventDetailPageState extends State<EventDetailPage> {
                         Container(
                           decoration: const BoxDecoration(color: Colors.grey),
                           height: 400,
-                          child: Image.network(eventData[widget.index].mainImg),
+                          child: ImageNetwork(
+                            image: eventData[widget.index].mainImg,
+                            height: 380,
+                            width: 390,
+                          ),
                         ),
                         Container(
                           margin: const EdgeInsets.symmetric(
@@ -124,7 +129,6 @@ class _EventDetailPageState extends State<EventDetailPage> {
                               color: const Color(0xffd9d9d9),
                             ),
                           ),
-                          height: 148,
                           width: width,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -136,7 +140,9 @@ class _EventDetailPageState extends State<EventDetailPage> {
                                     fontFamily: pretendard_500, fontSize: 15),
                               ),
                               Text(
-                                eventData[widget.index].useFee,
+                                eventData[widget.index].useFee.isEmpty
+                                    ? "무료"
+                                    : eventData[widget.index].useFee,
                                 style: const TextStyle(
                                   fontFamily: pretendard_700,
                                   fontSize: 20,
